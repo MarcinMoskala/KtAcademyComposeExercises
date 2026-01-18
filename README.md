@@ -9,13 +9,13 @@ This project uses the experimental Compose Screenshot Testing plugin.
 To record or update reference screenshots, run the following command:
 
 ```bash
-.\gradlew.bat updateDebugScreenshotTest
+./gradlew updateDebugScreenshotTest
 ```
 
 To verify the screenshots against existing references:
 
 ```bash
-.\gradlew.bat validateDebugScreenshotTest
+./gradlew validateDebugScreenshotTest
 ```
 
 #### Windows Compatibility Note

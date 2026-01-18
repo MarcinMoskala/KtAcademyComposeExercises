@@ -7,6 +7,13 @@ import com.android.tools.screenshot.PreviewTest
 @PreviewTest
 @Preview
 @Composable
+private fun GroceryItemPreviewTest() {
+    GroceryItemPreview()
+}
+
+@PreviewTest
+@Preview
+@Composable
 fun GroceryItemApplePreview() {
     GroceryItem(
         name = "Apple",

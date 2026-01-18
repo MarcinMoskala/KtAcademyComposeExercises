@@ -102,7 +102,7 @@ private fun GroceryItemCheckbox(
 
 @Preview
 @Composable
-private fun GroceryItemPreview() {
+fun GroceryItemPreview() {
     Column {
         GroceryItem(
             name = "Apple",
