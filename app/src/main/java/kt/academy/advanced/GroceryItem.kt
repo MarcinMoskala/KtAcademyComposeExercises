@@ -1,33 +1,23 @@
 package kt.academy.advanced
 
-import androidx.annotation.DrawableRes
-import androidx.compose.animation.animateColorAsState
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.*
+import androidx.compose.ui.unit.*
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.vector.*
+import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Arrangement.Absolute.SpaceBetween
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.toggleable
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import kt.academy.R
+import kt.academy.Icons.AppleIcon
+import kt.academy.Icons.MilkIcon
 
 @Composable
 fun GroceryItem(
@@ -35,12 +25,13 @@ fun GroceryItem(
     quantity: Int,
     isBought: Boolean,
     category: GroceryItemCategory?,
+    modifier: Modifier = Modifier,
     onToggleClicked: () -> Unit = {},
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = SpaceBetween,
-        modifier = Modifier
+        modifier = modifier
             .background(Color.White)
             .fillMaxWidth()
             .padding(16.dp)
@@ -72,7 +63,7 @@ fun GroceryItem(
             val categoryIcon = category?.icon
             if (categoryIcon != null) {
                 Icon(
-                    painterResource(id = categoryIcon),
+                    categoryIcon,
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
@@ -96,20 +87,59 @@ private fun GroceryItemCheckbox(
     val uncheckedColor: Color = Color.White
     val shape: Shape = CircleShape
     val checkboxColor: Color by animateColorAsState(if (isChecked) checkedColor else uncheckedColor)
-    Box(
+    Icon(
+        Icons.Default.Check,
+        contentDescription = null,
+        tint = uncheckedColor,
         modifier = modifier
             .clickable { onClick() }
             .toggleable(value = isChecked, onValueChange = { onClick() })
             .background(color = checkboxColor, shape = shape)
-            .border(width = 1.5.dp, color = checkedColor, shape = shape),
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            Icons.Default.Check,
-            contentDescription = null,
-            tint = uncheckedColor,
-            modifier = Modifier
-                .padding(2.dp)
+            .border(width = 1.5.dp, color = checkedColor, shape = shape)
+            .padding(2.dp)
+    )
+}
+
+@Preview
+@Composable
+private fun GroceryItemPreview() {
+    Column {
+        GroceryItem(
+            name = "Apple",
+            quantity = 2,
+            isBought = false,
+            category = GroceryItemCategory.FRUITS,
+            onToggleClicked = {},
+        )
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth()
+        )
+        GroceryItem(
+            name = "Chicken",
+            quantity = 1,
+            isBought = true,
+            category = GroceryItemCategory.MEAT,
+            onToggleClicked = {},
+        )
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth()
+        )
+        GroceryItem(
+            name = "Bread",
+            quantity = 20,
+            isBought = true,
+            category = null,
+            onToggleClicked = {},
+        )
+        HorizontalDivider(
+            modifier = Modifier.fillMaxWidth()
+        )
+        GroceryItem(
+            name = "Bread",
+            quantity = 20,
+            isBought = true,
+            category = null,
+            onToggleClicked = {},
         )
     }
 }
@@ -162,8 +192,8 @@ private fun GroceryItemNoCategoryPreview() {
     )
 }
 
-enum class GroceryItemCategory(@DrawableRes val icon: Int? = null) {
-    FRUITS(R.drawable.apple),
+enum class GroceryItemCategory(val icon: ImageVector? = null) {
+    FRUITS(AppleIcon),
     MEAT,
-    DAIRY(R.drawable.milk),
+    DAIRY(MilkIcon),
 }

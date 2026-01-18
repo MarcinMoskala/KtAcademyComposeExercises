@@ -18,7 +18,12 @@ import kt.academy.R
 @Composable
 fun FramedAvatar() {
     Image(
-        modifier = Modifier,
+        modifier = Modifier
+            .padding(10.dp)
+            .border(2.dp, Color.Black)
+            .padding(10.dp)
+            .clip(CircleShape)
+            .size(50.dp),
         contentDescription = null,
         painter = painterResource(id = R.drawable.avatar)
     )
