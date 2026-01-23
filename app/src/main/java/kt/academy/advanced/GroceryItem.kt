@@ -16,8 +16,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import kt.academy.Icons.AppleIcon
-import kt.academy.Icons.MilkIcon
+import kt.academy.AppleIcon
+import kt.academy.MilkIcon
 
 @Composable
 fun GroceryItem(
@@ -32,9 +32,6 @@ fun GroceryItem(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = SpaceBetween,
         modifier = modifier
-            .background(Color.White)
-            .fillMaxWidth()
-            .padding(16.dp)
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -42,12 +39,12 @@ fun GroceryItem(
             GroceryItemCheckbox(
                 isChecked = isBought,
                 onClick = onToggleClicked,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier
             )
             Text(
                 text = name,
                 fontSize = 16.sp,
-                modifier = Modifier.padding(start = 16.dp)
+                modifier = Modifier
             )
         }
         Row(
@@ -57,7 +54,7 @@ fun GroceryItem(
                 Text(
                     text = "$quantity",
                     fontSize = 16.sp,
-                    modifier = Modifier.padding(start = 16.dp)
+                    modifier = Modifier
                 )
             }
             val categoryIcon = category?.icon
@@ -67,10 +64,6 @@ fun GroceryItem(
                     contentDescription = null,
                     tint = Color.White,
                     modifier = Modifier
-                        .padding(start = 16.dp)
-                        .size(24.dp)
-                        .background(Color.Blue, CircleShape)
-                        .padding(4.dp)
                 )
             }
         }
@@ -92,11 +85,6 @@ private fun GroceryItemCheckbox(
         contentDescription = null,
         tint = uncheckedColor,
         modifier = modifier
-            .clickable { onClick() }
-            .toggleable(value = isChecked, onValueChange = { onClick() })
-            .background(color = checkboxColor, shape = shape)
-            .border(width = 1.5.dp, color = checkedColor, shape = shape)
-            .padding(2.dp)
     )
 }
 
