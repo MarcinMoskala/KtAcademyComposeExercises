@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun MyColumn(
+fun MyColumn(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
 ) {
@@ -32,27 +32,20 @@ internal fun MyColumn(
         modifier = modifier,
         content = content
     ) { measurables: List<Measurable>, constraints ->
-        var heightLeft = constraints.maxHeight
         val placeables = measurables.map { measurable ->
             measurable.measure(
                 Constraints(
                     minWidth = 0,
                     minHeight = 0,
-                    maxHeight = heightLeft,
+                    maxHeight = constraints.maxHeight,
                     maxWidth = constraints.maxWidth,
                 )
-            ).also {
-                heightLeft = (heightLeft - it.height).coerceAtLeast(0)
-            }
+            )
         }
-        val height = placeables.sumOf { it.height }
-            .coerceIn(constraints.minHeight, constraints.maxHeight)
-        val width = (placeables.maxOfOrNull { it.width } ?: 0)
-            .coerceIn(constraints.minWidth, constraints.maxWidth)
-        layout(width, height) {
+        layout(constraints.maxWidth, constraints.maxHeight) {
             var yPosition = 0
             placeables.forEach { placeable ->
-                placeable.placeRelative(x = 0, y = yPosition)
+                placeable.place(x = 0, y = yPosition)
                 yPosition += placeable.height
             }
         }
