@@ -1,6 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
-    id("com.android.compose.screenshot") version "0.0.1-alpha13"
+    alias(libs.plugins.screenshot)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.android)
 }
@@ -43,8 +43,10 @@ android {
             isReturnDefaultValues = true
         }
     }
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
 }
 
@@ -57,6 +59,7 @@ dependencies {
     implementation(libs.androidx.compose.ui.graphics)
     implementation(libs.androidx.compose.ui.tooling.preview)
     implementation(libs.androidx.compose.material3)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.screenshot.validation.api)
     testImplementation(libs.junit)
