@@ -1,3 +1,5 @@
+@file:Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
+
 package kt.academy.examples
 
 import androidx.compose.animation.core.LinearEasing
@@ -7,6 +9,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
@@ -22,7 +25,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
@@ -31,43 +36,48 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 @Composable
-fun OrderTrackingScreen(tracker: OrderTracker) {
-    val transition = rememberInfiniteTransition()
-    val truckOffset by transition.animateFloat(
-        initialValue = 0f,
-        targetValue = 280f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(3000, easing = LinearEasing),
-            repeatMode = RepeatMode.Reverse
-        )
-    )
-    val status = tracker.getDetailedStatus()
-
-    Column(
-        modifier = Modifier
+fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
+    BoxWithConstraints(
+        modifier = modifier
             .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp)
+            .padding(16.dp)
     ) {
-        Text(
-            text = "Order #38291",
-            style = MaterialTheme.typography.headlineSmall
+        val transition = rememberInfiniteTransition()
+        val truckOffset by transition.animateFloat(
+            initialValue = 0f,
+            targetValue = maxWidth.value - 48.dp.value,
+            animationSpec = infiniteRepeatable(
+                animation = tween(3000, easing = LinearEasing),
+                repeatMode = RepeatMode.Reverse
+            )
         )
-        Text(
-            text = "Estimated delivery: Tomorrow, 2–5 PM",
-            style = MaterialTheme.typography.bodyMedium
-        )
-        Icon(
-            imageVector = Icons.Default.LocalShipping,
-            contentDescription = "Delivery in progress",
-            modifier = Modifier
-                .size(48.dp)
-                .offset(x = truckOffset.dp)
-        )
-        Text(
-            text = status,
-            style = MaterialTheme.typography.bodyLarge
-        )
+        val status = tracker.getDetailedStatus()
+//        val status by tracker.detailedStatus.collectAsStateWithLifecycle()
+
+        Column(
+            verticalArrangement = Arrangement.spacedBy(12.dp)
+        ) {
+            Text(
+                text = "Order #38291",
+                style = MaterialTheme.typography.headlineSmall
+            )
+            Text(
+                text = "Estimated delivery: Tomorrow, 2–5 PM",
+                style = MaterialTheme.typography.bodyMedium
+            )
+            Icon(
+                imageVector = Icons.Default.LocalShipping,
+                contentDescription = "Delivery in progress",
+                modifier = Modifier
+                    .size(48.dp)
+                    .offset(x = truckOffset.dp)
+//                .offset { IntOffset(truckOffset.dp.roundToPx(), 0) }
+            )
+            Text(
+                text = status,
+                style = MaterialTheme.typography.bodyLarge
+            )
+        }
     }
 }
 
