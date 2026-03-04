@@ -15,6 +15,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.LocalShipping
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -65,7 +67,7 @@ fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodyMedium
             )
             Icon(
-                FavoriteIcon,
+                imageVector = Icons.Default.LocalShipping,
                 contentDescription = "Delivery in progress",
                 modifier = Modifier
                     .size(48.dp)
