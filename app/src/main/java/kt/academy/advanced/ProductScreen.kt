@@ -124,6 +124,7 @@ private fun BackToTopButton(
 
 @Composable
 fun ProductItem(product: Product, modifier: Modifier = Modifier) {
+    RecompositionCounterEffect("ProductItem_${product.id}")
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -177,9 +178,18 @@ private fun AllCounters(counter: ActualRecompositionCounter, modifier: Modifier 
         }
     }
     Column(modifier = modifier) {
-        counts.forEach { (key, count) ->
+        counts.filter { !it.key.startsWith("ProductItem") }.forEach { (key, count) ->
             Text(
                 text = "Recompositions of $key: $count",
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                fontSize = 16.sp,
+                color = Color.Red
+            )
+        }
+        val itemCounts = counts.filter { it.key.startsWith("ProductItem") }
+        if (itemCounts.isNotEmpty()) {
+            Text(
+                text = "Recompositions of ProductItems: ${itemCounts.values.sum()} (across ${itemCounts.size} items)",
                 modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                 fontSize = 16.sp,
                 color = Color.Red

@@ -30,7 +30,9 @@ class ProductScreenTest {
     fun usesPersistentListForStability() {
         // Cannot use Kotlin function references on @Composable functions
         // Use Java reflection to inspect the compiled method signature
-        val productScreenClass = Class.forName("com.marcinmoskala.composeexercises.exercises.advanced.RecompositionOptimizationKt")
+        val productScreenClass = Class.forName(
+            Product::class.qualifiedName!!.substringBefore("Product") + "ProductScreenKt"
+        )
         
         val productScreenMethod = productScreenClass.declaredMethods.find { 
             it.name == "ProductScreen" 
