@@ -12,11 +12,10 @@ import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Arrangement.Absolute.SpaceBetween
 import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import kt.academy.AppleIcon
+import kt.academy.CheckIcon
 import kt.academy.MilkIcon
 
 @Composable
@@ -81,7 +80,7 @@ private fun GroceryItemCheckbox(
     val shape: Shape = CircleShape
     val checkboxColor: Color by animateColorAsState(if (isChecked) checkedColor else uncheckedColor)
     Icon(
-        Icons.Default.Check,
+        CheckIcon,
         contentDescription = null,
         tint = uncheckedColor,
         modifier = modifier

@@ -5,12 +5,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import kt.academy.Avatar
+import kt.academy.AvatarIcon
 
 @Composable
 fun FramedAvatar() {
     Icon(
-        imageVector = Avatar,
+        imageVector = AvatarIcon,
         modifier = Modifier,
         contentDescription = "Avatar",
         tint = Color.Unspecified

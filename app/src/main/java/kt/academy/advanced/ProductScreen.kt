@@ -6,7 +6,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -17,8 +19,14 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -29,6 +37,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.util.concurrent.ConcurrentHashMap
 
@@ -142,10 +151,50 @@ fun ProductItem(product: Product, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun PreviewProductScreen() {
-    val products = List(100) {
-        Product(it, "Product $it", it * 10.0)
-    }.toPersistentList()
-    ProductScreen(products)
+    val counter = remember { ActualRecompositionCounter() }
+    val products = remember {
+        List(100) {
+            Product(it, "Product $it", it * 10.0)
+        }.toPersistentList()
+    }
+    CompositionLocalProvider(LocalCompositionCounter provides counter) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) {
+            ProductScreen(products, modifier = Modifier.weight(1f))
+            AllCounters(counter)
+        }
+    }
+}
+
+@Composable
+private fun AllCounters(counter: ActualRecompositionCounter, modifier: Modifier = Modifier) {
+    var counts by remember { mutableStateOf(emptyMap<String, Int>()) }
+    LaunchedEffect(counter) {
+        while (true) {
+            counts = counter.getCounts().toSortedMap()
+            delay(1000)
+        }
+    }
+    Column(modifier = modifier) {
+        counts.filter { !it.key.startsWith("ProductItem") }.forEach { (key, count) ->
+            Text(
+                text = "Recompositions of $key: $count",
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                fontSize = 16.sp,
+                color = Color.Red
+            )
+        }
+        val itemCounts = counts.filter { it.key.startsWith("ProductItem") }
+        if (itemCounts.isNotEmpty()) {
+            Text(
+                text = "Recompositions of ProductItems: ${itemCounts.values.sum()} (across ${itemCounts.size} items)",
+                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                fontSize = 16.sp,
+                color = Color.Red
+            )
+        }
+    }
 }
 
 interface RecompositionCounter {
@@ -154,15 +203,15 @@ interface RecompositionCounter {
 }
 
 class ActualRecompositionCounter : RecompositionCounter {
-    private var recompositions = ConcurrentHashMap<String, Int>()
+    private val counts = ConcurrentHashMap<String, Int>()
 
     override fun increment(key: String) {
-        recompositions.compute(key) { _, oldValue ->
-            oldValue?.let { oldValue + 1 } ?: 1
-        }
+        counts.compute(key) { _, oldValue -> (oldValue ?: 0) + 1 }
     }
 
-    override fun get(key: String): Int? = recompositions[key]
+    override fun get(key: String): Int? = counts[key]
+
+    fun getCounts(): Map<String, Int> = counts.toMap()
 }
 
 object NoOpRecompositionCounter : RecompositionCounter {
