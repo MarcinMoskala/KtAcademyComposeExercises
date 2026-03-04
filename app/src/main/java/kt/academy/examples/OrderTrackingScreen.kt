@@ -15,8 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.LocalShipping
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -34,6 +32,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import kt.academy.FavoriteIcon
 
 @Composable
 fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
@@ -66,7 +65,7 @@ fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodyMedium
             )
             Icon(
-                imageVector = Icons.Default.LocalShipping,
+                FavoriteIcon,
                 contentDescription = "Delivery in progress",
                 modifier = Modifier
                     .size(48.dp)
