@@ -204,10 +204,10 @@ interface RecompositionCounter {
 }
 
 class ActualRecompositionCounter : RecompositionCounter {
-    private val counts = ConcurrentHashMap<String, Int>()
+    private val counts = mutableMapOf<String, Int>()
 
     override fun increment(key: String) {
-        counts.compute(key) { _, oldValue -> (oldValue ?: 0) + 1 }
+        counts[key] = (counts[key] ?: 0) + 1
     }
 
     override fun get(key: String): Int? = counts[key]
