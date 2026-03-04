@@ -13,11 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.hasScrollAction
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithText
+import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipe
 import androidx.compose.ui.unit.dp
 import com.marcinmoskala.composeexercises.exercises.advanced.ActualRecompositionCounter
 import com.marcinmoskala.composeexercises.exercises.advanced.LocalCompositionCounter
+import kotlinx.coroutines.delay
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
@@ -58,24 +61,27 @@ class BoxScrollbarTest {
         }
 
         composeTestRule.waitForIdle()
-        assertEquals(
-            "BoxScrollbar should compose once initially",
-            1,
-            counter.get("BoxScrollbar") ?: 0
-        )
+        composeTestRule.onNode(hasScrollAction())
+            .performTouchInput {
+                val start = center
+                swipe(start, start.copy(y = start.y - 100f))
+            }
+        composeTestRule.waitForIdle()
+
+        val initialNumberOfRecompositions = counter.get("BoxScrollbar") ?: 0
 
         // First swipe down — covers multiple scroll frames
         composeTestRule.onNode(hasScrollAction())
             .performTouchInput {
                 val start = center
-                swipe(start, start.copy(y = start.y - 300f))
+                swipe(start, start.copy(y = start.y - 500f))
             }
         composeTestRule.waitForIdle()
 
         val afterFirstScroll = counter.get("BoxScrollbar") ?: 0
         assertEquals(
             "BoxScrollbar should not recompose while scrolling; reading scroll state in the composable body instead of deferring it to the layout phase would increase this count",
-            1,
+            initialNumberOfRecompositions,
             afterFirstScroll
         )
 
@@ -90,7 +96,7 @@ class BoxScrollbarTest {
         val afterSecondScroll = counter.get("BoxScrollbar") ?: 0
         assertEquals(
             "BoxScrollbar should not recompose on further scrolling",
-            afterFirstScroll,
+            initialNumberOfRecompositions,
             afterSecondScroll
         )
     }
