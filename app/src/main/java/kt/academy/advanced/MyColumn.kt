@@ -43,10 +43,8 @@ fun MyColumn(
             )
         }
         layout(constraints.maxWidth, constraints.maxHeight) {
-            var yPosition = 0
             placeables.forEach { placeable ->
-                placeable.place(x = 0, y = yPosition)
-                yPosition += placeable.height
+                placeable.place(x = 0, y = 0)
             }
         }
     }

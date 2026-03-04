@@ -141,7 +141,7 @@ fun ProductItem(product: Product, modifier: Modifier = Modifier) {
             color = Color(0xFF1B1F2B)
         )
         Text(
-            text = "$${"%.2f".format(product.price)}",
+            text = "$${product.price}",
             style = MaterialTheme.typography.bodyMedium,
             color = Color(0xFF4A5568)
         )
