@@ -172,7 +172,8 @@ private fun AllCounters(counter: ActualRecompositionCounter, modifier: Modifier 
     var counts by remember { mutableStateOf(emptyMap<String, Int>()) }
     LaunchedEffect(counter) {
         while (true) {
-            counts = counter.getCounts().toSortedMap()
+            counts = counter.getCounts()
+                .toList().sortedBy { it.first }.toMap()
             delay(1000)
         }
     }

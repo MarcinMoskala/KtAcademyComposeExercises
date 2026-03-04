@@ -1,15 +1,7 @@
 package kt.academy
 
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PathFillType
-import androidx.compose.ui.graphics.PathFillType.Companion.NonZero
-import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.StrokeCap.Companion.Butt
-import androidx.compose.ui.graphics.StrokeJoin
-import androidx.compose.ui.graphics.StrokeJoin.Companion.Miter
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.path
+import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.vector.*
 import androidx.compose.ui.unit.dp
 
 val MilkIcon: ImageVector by lazy {
@@ -25,10 +17,10 @@ val MilkIcon: ImageVector by lazy {
             fill = SolidColor(Color.Black),
             stroke = null,
             strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
+            strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
             strokeLineMiter = 4.0f,
-            pathFillType = NonZero
+            pathFillType = PathFillType.NonZero
         ) {
             moveTo(371.891f, 118.434f)
             lineToRelative(-22.593f, -35.358f)
@@ -105,10 +97,10 @@ val MilkIcon: ImageVector by lazy {
             fill = SolidColor(Color.Black),
             stroke = null,
             strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
+            strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
             strokeLineMiter = 4.0f,
-            pathFillType = NonZero
+            pathFillType = PathFillType.NonZero
         ) {
             moveTo(184.74f, 234.509f)
             verticalLineToRelative(192.025f)
@@ -135,8 +127,8 @@ val AppleIcon: ImageVector by lazy {
         fill = SolidColor(Color.Black),
         stroke = null,
         strokeLineWidth = 0.0f,
-        strokeLineCap = Butt,
-        strokeLineJoin = Miter,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
         strokeLineMiter = 4.0f,
         pathFillType = PathFillType.EvenOdd
     ) {
@@ -188,10 +180,10 @@ val FavoriteIcon: ImageVector by lazy {
         fill = SolidColor(Color.Black),
         stroke = null,
         strokeLineWidth = 0.0f,
-        strokeLineCap = Butt,
-        strokeLineJoin = Miter,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
         strokeLineMiter = 4.0f,
-        pathFillType = NonZero
+        pathFillType = PathFillType.NonZero
     ) {
         // This is the SVG path data for the Material Design "Favorite" icon
         moveTo(12.0f, 21.35f)
@@ -318,10 +310,10 @@ val AvatarIcon: ImageVector by lazy {
             fill = SolidColor(Color(0xFFE0E0E0)),
             stroke = null,
             strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
+            strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
             strokeLineMiter = 4.0f,
-            pathFillType = NonZero
+            pathFillType = PathFillType.NonZero
         ) {
             moveTo(0.0f, 0.0f)
             lineTo(24.0f, 0.0f)
@@ -335,10 +327,10 @@ val AvatarIcon: ImageVector by lazy {
             fill = SolidColor(Color(0xFF9E9E9E)),
             stroke = null,
             strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
+            strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
             strokeLineMiter = 4.0f,
-            pathFillType = NonZero
+            pathFillType = PathFillType.NonZero
         ) {
             moveTo(12.0f, 4.0f)
             curveTo(9.24f, 4.0f, 7.0f, 6.24f, 7.0f, 9.0f)
@@ -353,10 +345,10 @@ val AvatarIcon: ImageVector by lazy {
             fill = SolidColor(Color(0xFF9E9E9E)),
             stroke = null,
             strokeLineWidth = 0.0f,
-            strokeLineCap = Butt,
-            strokeLineJoin = Miter,
+            strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
             strokeLineMiter = 4.0f,
-            pathFillType = NonZero
+            pathFillType = PathFillType.NonZero
         ) {
             moveTo(12.0f, 15.0f)
             curveTo(6.5f, 15.0f, 2.0f, 17.5f, 2.0f, 20.5f)
@@ -691,10 +683,10 @@ val AddIcon: ImageVector by lazy {
         fill = SolidColor(Color.Black),
         stroke = null,
         strokeLineWidth = 0.0f,
-        strokeLineCap = Butt,
-        strokeLineJoin = Miter,
+                    strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
         strokeLineMiter = 4.0f,
-        pathFillType = NonZero
+        pathFillType = PathFillType.NonZero
     ) {
         moveTo(19.0f, 13.0f)
         horizontalLineTo(13.0f)
@@ -724,10 +716,10 @@ val CheckIcon: ImageVector by lazy {
         fill = SolidColor(Color.Black),
         stroke = null,
         strokeLineWidth = 0.0f,
-        strokeLineCap = Butt,
-        strokeLineJoin = Miter,
+                    strokeLineCap = StrokeCap.Butt,
+            strokeLineJoin = StrokeJoin.Miter,
         strokeLineMiter = 4.0f,
-        pathFillType = NonZero
+        pathFillType = PathFillType.NonZero
     ) {
         moveTo(9.0f, 16.17f)
         lineTo(4.83f, 12.0f)
