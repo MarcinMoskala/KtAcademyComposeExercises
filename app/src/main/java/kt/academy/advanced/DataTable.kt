@@ -92,7 +92,7 @@ fun <T> DataTable(
         columnOrder.add(boundedTo, key)
     }
 
-    DataTable(
+    DataTableUi(
         data = data,
         columns = columns,
         modifier = modifier,
@@ -108,13 +108,13 @@ fun <T> DataTable(
 }
 
 @Composable
-private fun <T> DataTable(
+private fun <T> DataTableUi(
     data: List<T>,
     columns: Map<String, (T) -> Comparable<*>>,
     modifier: Modifier = Modifier,
-    headerHeight: Dp = 44.dp,
-    rowHeight: Dp = 40.dp,
-    swapThreshold: Dp = 40.dp,
+    headerHeight: Dp,
+    rowHeight: Dp,
+    swapThreshold: Dp,
     sortColumnKey: String?,
     isSortAscending: Boolean,
     columnOrder: List<String>,
@@ -282,5 +282,5 @@ private fun TablePreview() {
         "Age" to { it.age },
         "City" to { it.city }
     )
-    DataTable(people, columns, modifier = Modifier.padding(16.dp))
+    DataTable(data = people, columns = columns, modifier = Modifier.padding(16.dp))
 }
