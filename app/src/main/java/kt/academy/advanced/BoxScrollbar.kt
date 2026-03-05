@@ -3,7 +3,6 @@ package kt.academy.advanced
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,24 +19,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import com.marcinmoskala.composeexercises.exercises.advanced.ActualRecompositionCounter
-import com.marcinmoskala.composeexercises.exercises.advanced.LocalCompositionCounter
-import com.marcinmoskala.composeexercises.exercises.advanced.RecompositionCounterEffect
-import kotlinx.coroutines.delay
-import kotlin.collections.component1
-import kotlin.collections.component2
 
 @Composable
 fun BoxScrollbar(
@@ -89,52 +76,25 @@ fun BoxScrollbar(
 @Composable
 private fun BoxScrollbarPreview() {
     val listState = rememberLazyListState()
-    val counter = remember { ActualRecompositionCounter() }
-    CompositionLocalProvider(LocalCompositionCounter provides counter) {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Box(modifier = Modifier.weight(1f)) {
-                LazyColumn(
-                    state = listState,
-                    modifier = Modifier
-                        .fillMaxSize()
-                ) {
-                    items(List(100) { "Item $it" }) {
-                        Text(it, modifier = Modifier.padding(10.dp))
-                    }
+    CountAndDisplayRecompositions {
+        Box(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                state = listState,
+                modifier = Modifier
+                    .fillMaxSize()
+            ) {
+                items(List(100) { "Item $it" }) {
+                    Text(it, modifier = Modifier.padding(10.dp))
                 }
-                BoxScrollbar(
-                    listState = listState,
-                    modifier = Modifier
-                        .align(Alignment.CenterEnd)
-                        .fillMaxHeight()
-                        .width(5.dp)
-                )
             }
-            Counters(counter)
-        }
-    }
-}
-
-@Composable
-private fun Counters(counter: ActualRecompositionCounter, modifier: Modifier = Modifier) {
-    var counts by remember { mutableStateOf(emptyMap<String, Int>()) }
-    LaunchedEffect(counter) {
-        while (true) {
-            counts = counter.getCounts()
-                .toList().sortedBy { it.first }.toMap()
-            delay(1000)
-        }
-    }
-    Column(modifier = modifier) {
-        counts.forEach { (key, count) ->
-            Text(
-                text = "Recompositions of $key: $count",
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-                fontSize = 16.sp,
-                color = Color.Red
+            BoxScrollbar(
+                listState = listState,
+                modifier = Modifier
+                    .align(Alignment.CenterEnd)
+                    .fillMaxHeight()
+                    .width(5.dp)
             )
         }
     }
 }
+

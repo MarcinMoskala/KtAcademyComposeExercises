@@ -15,6 +15,8 @@ import androidx.compose.ui.test.swipe
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.collections.immutable.toPersistentList
+import kt.academy.advanced.ActualRecompositionCounter
+import kt.academy.advanced.LocalCompositionCounter
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertTrue
 import org.junit.Rule

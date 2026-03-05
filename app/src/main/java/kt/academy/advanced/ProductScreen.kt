@@ -41,6 +41,10 @@ import kotlinx.collections.immutable.PersistentList
 import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kt.academy.advanced.ActualRecompositionCounter
+import kt.academy.advanced.CountAndDisplayRecompositions
+import kt.academy.advanced.LocalCompositionCounter
+import kt.academy.advanced.RecompositionCounterEffect
 import java.util.concurrent.ConcurrentHashMap
 
 data class Product(val id: Int, val name: String, val price: Double)
@@ -126,7 +130,7 @@ private fun BackToTopButton(
 
 @Composable
 fun ProductItem(product: Product, modifier: Modifier = Modifier) {
-    RecompositionCounterEffect("ProductItem_${product.id}")
+    RecompositionCounterEffect("ProductItem")
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -153,82 +157,12 @@ fun ProductItem(product: Product, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 private fun PreviewProductScreen() {
-    val counter = remember { ActualRecompositionCounter() }
     val products = remember {
         List(100) {
             Product(it, "Product $it", it * 10.0)
         }.toPersistentList()
     }
-    CompositionLocalProvider(LocalCompositionCounter provides counter) {
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            ProductScreen(products, modifier = Modifier.weight(1f))
-            AllCounters(counter)
-        }
-    }
-}
-
-@Composable
-private fun AllCounters(counter: ActualRecompositionCounter, modifier: Modifier = Modifier) {
-    var counts by remember { mutableStateOf(emptyMap<String, Int>()) }
-    LaunchedEffect(counter) {
-        while (true) {
-            counts = counter.getCounts()
-                .toList().sortedBy { it.first }.toMap()
-            delay(1000)
-        }
-    }
-    Column(modifier = modifier) {
-        counts.filter { !it.key.startsWith("ProductItem") }.forEach { (key, count) ->
-            Text(
-                text = "Recompositions of $key: $count",
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-                fontSize = 16.sp,
-                color = Color.Red
-            )
-        }
-        val itemCounts = counts.filter { it.key.startsWith("ProductItem") }
-        if (itemCounts.isNotEmpty()) {
-            Text(
-                text = "Recompositions of ProductItems: ${itemCounts.values.sum()} (across ${itemCounts.size} items)",
-                modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
-                fontSize = 16.sp,
-                color = Color.Red
-            )
-        }
-    }
-}
-
-interface RecompositionCounter {
-    fun increment(key: String)
-    fun get(key: String): Int?
-}
-
-class ActualRecompositionCounter : RecompositionCounter {
-    private val counts = mutableMapOf<String, Int>()
-
-    override fun increment(key: String) {
-        counts[key] = (counts[key] ?: 0) + 1
-    }
-
-    override fun get(key: String): Int? = counts[key]
-
-    fun getCounts(): Map<String, Int> = counts.toMap()
-}
-
-object NoOpRecompositionCounter : RecompositionCounter {
-    override fun increment(key: String) {}
-    override fun get(key: String): Int? = null
-}
-
-val LocalCompositionCounter =
-    staticCompositionLocalOf<RecompositionCounter> { NoOpRecompositionCounter }
-
-@Composable
-inline fun RecompositionCounterEffect(key: String) {
-    val counter = LocalCompositionCounter.current
-    SideEffect {
-        counter.increment(key)
+    CountAndDisplayRecompositions {
+        ProductScreen(products)
     }
 }

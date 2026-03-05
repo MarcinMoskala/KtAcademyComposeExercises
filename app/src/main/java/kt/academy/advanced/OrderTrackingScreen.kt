@@ -1,6 +1,6 @@
 @file:Suppress("COMPOSE_APPLIER_CALL_MISMATCH")
 
-package kt.academy.examples
+package kt.academy.advanced
 
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
@@ -34,10 +34,11 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kt.academy.FavoriteIcon
+import kt.academy.TruckIcon
 
 @Composable
 fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
+    RecompositionCounterEffect("OrderTrackingScreen")
     BoxWithConstraints(
         modifier = modifier
             .fillMaxSize()
@@ -53,7 +54,6 @@ fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
             )
         )
         val status = tracker.getDetailedStatus()
-//        val status by tracker.detailedStatus.collectAsStateWithLifecycle()
 
         Column(
             verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -67,16 +67,11 @@ fun OrderTrackingScreen(tracker: OrderTracker, modifier: Modifier = Modifier) {
                 style = MaterialTheme.typography.bodyMedium
             )
             Icon(
-                imageVector = Icons.Default.LocalShipping,
+                imageVector = TruckIcon,
                 contentDescription = "Delivery in progress",
                 modifier = Modifier
                     .size(48.dp)
                     .offset(x = truckOffset.dp)
-//                .offset { IntOffset(truckOffset.dp.roundToPx(), 0) }
-            )
-            Text(
-                text = status,
-                style = MaterialTheme.typography.bodyLarge
             )
         }
     }
@@ -90,25 +85,35 @@ interface OrderTracker {
 @Preview(showBackground = true)
 @Composable
 private fun OrderTrackingScreenPreview() {
-    val tracker = remember {
-        object : OrderTracker {
-            val scope = CoroutineScope(SupervisorJob())
-            init {
-                scope.launch {
-                    delay(2000)
-                    detailedStatus.value = "Package is on its way to the distribution center"
-                    delay(2000)
-                    detailedStatus.value = "Package is on its way to your location"
-                    delay(2000)
-                    detailedStatus.value = "Package has been delivered"
-                }
-            }
-            override val detailedStatus = MutableStateFlow("Package is on its way to the distribution center")
-            override fun getDetailedStatus(): String {
-                Thread.sleep(100)
-                return detailedStatus.value
-            }
+    val tracker: OrderTracker = remember { FakeOrderTracker() }
+    CountAndDisplayRecompositions {
+        OrderTrackingScreen(tracker)
+    }
+}
+
+class FakeOrderTracker  : OrderTracker {
+    val scope = CoroutineScope(SupervisorJob())
+
+    init {
+        scope.launch {
+            delay(2000)
+            detailedStatus.value = "Package is on its way to the distribution center"
+            delay(2000)
+            detailedStatus.value = "Package is on its way to your location"
+            delay(2000)
+            detailedStatus.value = "Package has been delivered"
         }
     }
-    OrderTrackingScreen(tracker)
+
+    override val detailedStatus =
+        MutableStateFlow("Package is on its way to the distribution center")
+
+    val itemsToSortToSimulateHeavyOperation by lazy {
+        List(10_000_000) { "Item$it".hashCode().toString() }
+    }
+
+    override fun getDetailedStatus(): String {
+        itemsToSortToSimulateHeavyOperation.sorted()
+        return detailedStatus.value
+    }
 }

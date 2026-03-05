@@ -731,3 +731,59 @@ val CheckIcon: ImageVector by lazy {
     }.build()
 }
 
+val TruckIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "Truck",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        // Main truck body (cargo area + cab frame)
+        moveTo(20f, 8f)
+        horizontalLineToRelative(-3f)
+        verticalLineTo(4f)
+        horizontalLineTo(3f)
+        curveToRelative(-1.1f, 0f, -2f, 0.9f, -2f, 2f)
+        verticalLineToRelative(11f)
+        horizontalLineToRelative(2f)
+        curveToRelative(0f, 1.66f, 1.34f, 3f, 3f, 3f)
+        reflectiveCurveToRelative(3f, -1.34f, 3f, -3f)
+        horizontalLineToRelative(6f)
+        curveToRelative(0f, 1.66f, 1.34f, 3f, 3f, 3f)
+        reflectiveCurveToRelative(3f, -1.34f, 3f, -3f)
+        horizontalLineToRelative(2f)
+        verticalLineToRelative(-5f)
+        lineToRelative(-3f, -4f)
+        close()
+        // Rear wheel
+        moveTo(6f, 18.5f)
+        curveToRelative(-0.83f, 0f, -1.5f, -0.67f, -1.5f, -1.5f)
+        reflectiveCurveToRelative(0.67f, -1.5f, 1.5f, -1.5f)
+        reflectiveCurveToRelative(1.5f, 0.67f, 1.5f, 1.5f)
+        reflectiveCurveToRelative(-0.67f, 1.5f, -1.5f, 1.5f)
+        close()
+        // Cab window
+        moveTo(19.5f, 9.5f)
+        lineToRelative(1.96f, 2.5f)
+        horizontalLineTo(17f)
+        verticalLineTo(9.5f)
+        horizontalLineToRelative(2.5f)
+        close()
+        // Front wheel
+        moveTo(18f, 18.5f)
+        curveToRelative(-0.83f, 0f, -1.5f, -0.67f, -1.5f, -1.5f)
+        reflectiveCurveToRelative(0.67f, -1.5f, 1.5f, -1.5f)
+        reflectiveCurveToRelative(1.5f, 0.67f, 1.5f, 1.5f)
+        reflectiveCurveToRelative(-0.67f, 1.5f, -1.5f, 1.5f)
+        close()
+    }.build()
+}

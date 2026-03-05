@@ -18,8 +18,6 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTouchInput
 import androidx.compose.ui.test.swipe
 import androidx.compose.ui.unit.dp
-import com.marcinmoskala.composeexercises.exercises.advanced.ActualRecompositionCounter
-import com.marcinmoskala.composeexercises.exercises.advanced.LocalCompositionCounter
 import kotlinx.coroutines.delay
 import org.junit.Assert.assertEquals
 import org.junit.Rule
