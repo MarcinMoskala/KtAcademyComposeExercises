@@ -1,8 +1,11 @@
+import org.jetbrains.kotlin.compose.compiler.gradle.ComposeFeatureFlag
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.screenshot)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.0"
 }
 
 android {
@@ -50,6 +53,11 @@ android {
     }
 }
 
+composeCompiler {
+    includeSourceInformation = true
+    featureFlags.add(ComposeFeatureFlag.OptimizeNonSkippingGroups.disabled())
+}
+
 dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -62,7 +70,11 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.screenshot.validation.api)
-    implementation(libs.androidx.compose.foundation)
+    implementation("androidx.compose.foundation:foundation:1.10.4")
+    implementation("androidx.navigation3:navigation3-runtime:1.0.0")
+    implementation("androidx.navigation3:navigation3-ui:1.0.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.5")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

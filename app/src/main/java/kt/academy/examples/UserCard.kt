@@ -30,7 +30,11 @@ import androidx.compose.ui.unit.sp
 import kt.academy.ui.theme.ComposeExercisesTheme
 
 @Composable
-fun UserCard(name: String, avatarUrl: String, modifier: Modifier = Modifier) {
+fun UserCard(
+    name: String,
+    avatarUrl: String,
+    modifier: Modifier = Modifier
+) {
     Card(modifier = modifier.fillMaxWidth()) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
