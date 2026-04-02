@@ -1,7 +1,15 @@
 package kt.academy
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.vector.*
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 val MilkIcon: ImageVector by lazy {
@@ -786,4 +794,31 @@ val TruckIcon: ImageVector by lazy {
         reflectiveCurveToRelative(-0.67f, 1.5f, -1.5f, 1.5f)
         close()
     }.build()
+}
+
+@Preview
+@Composable
+fun IconPreview() {
+    Column {
+        val icons = listOf(
+            MilkIcon,
+            AppleIcon,
+            FavoriteIcon,
+            AvatarIcon,
+            ComposeLogoIcon,
+            SomeLogoIcon,
+            CheckIcon,
+            AddIcon,
+            TruckIcon
+        )
+        icons.forEach { icon ->
+            Image(
+                imageVector = icon,
+                contentDescription = "Truck Icon",
+                modifier = Modifier
+                    .size(100.dp)
+                    .padding(8.dp)
+            )
+        }
+    }
 }
