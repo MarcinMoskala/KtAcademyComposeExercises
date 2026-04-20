@@ -279,9 +279,12 @@ class ProductScreenTest {
             .performScrollToIndex(2)
         composeTestRule.waitForIdle()
 
-        assertEquals("Product 101 should compose once initially", 1, counter.get("ProductItem_101") ?: 0)
-        assertEquals("Product 202 should compose once initially", 1, counter.get("ProductItem_202") ?: 0)
-        assertEquals("Product 303 should compose once initially", 1, counter.get("ProductItem_303") ?: 0)
+        val initialProductItemCount = counter.get("ProductItem") ?: 0
+        assertEquals(
+            "Each initial product should compose once",
+            3,
+            initialProductItemCount
+        )
 
         composeTestRule.runOnUiThread {
             products = (persistentListOf(Product(999, "New arrival", 1.0)) + products).toPersistentList()
@@ -289,14 +292,9 @@ class ProductScreenTest {
         composeTestRule.waitForIdle()
 
         assertEquals(
-            "Stable keys should prevent unnecessary recomposition of unchanged products when inserting at the top",
-            1,
-            counter.get("ProductItem_202") ?: 0
-        )
-        assertEquals(
-            "Stable keys should prevent unnecessary recomposition of unchanged products when inserting at the top",
-            1,
-            counter.get("ProductItem_303") ?: 0
+            "Stable keys should only compose the inserted product when adding at the top",
+            initialProductItemCount + 1,
+            counter.get("ProductItem") ?: 0
         )
     }
 
