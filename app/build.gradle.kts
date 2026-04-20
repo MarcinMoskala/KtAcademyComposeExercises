@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.screenshot)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.android)
-    id("org.jetbrains.kotlin.plugin.serialization") version "2.3.0"
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -71,12 +71,12 @@ dependencies {
     implementation(libs.kotlinx.collections.immutable)
     implementation(libs.screenshot.validation.api)
     implementation(libs.androidx.compose.foundation)
-    implementation(libs.androidx.navigation3.runtime)
-    implementation(libs.androidx.navigation3.ui)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.navigation2)
-    implementation(libs.bundles.coil)    testImplementation(libs.junit)
+    implementation(libs.bundles.navigation3)
+    implementation(libs.bundles.coil)
+    testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
