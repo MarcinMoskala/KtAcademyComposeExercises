@@ -796,7 +796,174 @@ val TruckIcon: ImageVector by lazy {
     }.build()
 }
 
-@Preview
+val EmailIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "Email",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(20.0f, 4.0f)
+        lineTo(4.0f, 4.0f)
+        curveToRelative(-1.1f, 0.0f, -1.99f, 0.9f, -1.99f, 2.0f)
+        lineTo(2.0f, 18.0f)
+        curveToRelative(0.0f, 1.1f, 0.9f, 2.0f, 2.0f, 2.0f)
+        horizontalLineToRelative(16.0f)
+        curveToRelative(1.1f, 0.0f, 2.0f, -0.9f, 2.0f, -2.0f)
+        lineTo(22.0f, 6.0f)
+        curveToRelative(0.0f, -1.1f, -0.9f, -2.0f, -2.0f, -2.0f)
+        close()
+        moveTo(20.0f, 8.0f)
+        lineToRelative(-8.0f, 5.0f)
+        lineToRelative(-8.0f, -5.0f)
+        lineTo(4.0f, 6.0f)
+        lineToRelative(8.0f, 5.0f)
+        lineToRelative(8.0f, -5.0f)
+        verticalLineToRelative(2.0f)
+        close()
+    }.build()
+}
+
+val PhoneIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "Phone",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(6.62f, 10.79f)
+        curveToRelative(1.44f, 2.83f, 3.76f, 5.14f, 6.59f, 6.59f)
+        lineToRelative(2.2f, -2.2f)
+        curveToRelative(0.27f, -0.27f, 0.67f, -0.36f, 1.02f, -0.24f)
+        curveToRelative(1.12f, 0.37f, 2.33f, 0.57f, 3.57f, 0.57f)
+        curveToRelative(0.55f, 0.0f, 1.0f, 0.45f, 1.0f, 1.0f)
+        verticalLineTo(20.0f)
+        curveToRelative(0.0f, 0.55f, -0.45f, 1.0f, -1.0f, 1.0f)
+        curveToRelative(-9.39f, 0.0f, -17.0f, -7.61f, -17.0f, -17.0f)
+        curveToRelative(0.0f, -0.55f, 0.45f, -1.0f, 1.0f, -1.0f)
+        horizontalLineToRelative(3.5f)
+        curveToRelative(0.55f, 0.0f, 1.0f, 0.45f, 1.0f, 1.0f)
+        curveToRelative(0.0f, 1.25f, 0.2f, 2.45f, 0.57f, 3.57f)
+        curveToRelative(0.11f, 0.35f, 0.03f, 0.74f, -0.25f, 1.02f)
+        lineToRelative(-2.2f, 2.2f)
+        close()
+    }.build()
+}
+
+val LocationIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "LocationOn",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(12.0f, 2.0f)
+        curveTo(8.13f, 2.0f, 5.0f, 5.13f, 5.0f, 9.0f)
+        curveToRelative(0.0f, 5.25f, 7.0f, 13.0f, 7.0f, 13.0f)
+        reflectiveCurveToRelative(7.0f, -7.75f, 7.0f, -13.0f)
+        curveToRelative(0.0f, -3.87f, -3.13f, -7.0f, -7.0f, -7.0f)
+        close()
+        moveTo(12.0f, 11.5f)
+        curveToRelative(-1.38f, 0.0f, -2.5f, -1.12f, -2.5f, -2.5f)
+        reflectiveCurveToRelative(1.12f, -2.5f, 2.5f, -2.5f)
+        reflectiveCurveToRelative(2.5f, 1.12f, 2.5f, 2.5f)
+        reflectiveCurveToRelative(-1.12f, 2.5f, -2.5f, 2.5f)
+        close()
+    }.build()
+}
+
+val StarIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "Star",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(12.0f, 17.27f)
+        lineTo(18.18f, 21.0f)
+        lineToRelative(-1.64f, -7.03f)
+        lineTo(22.0f, 9.24f)
+        lineToRelative(-7.19f, -0.61f)
+        lineTo(12.0f, 2.0f)
+        lineTo(9.19f, 8.63f)
+        lineTo(2.0f, 9.24f)
+        lineToRelative(5.46f, 4.73f)
+        lineTo(5.82f, 21.0f)
+        close()
+    }.build()
+}
+
+val EditIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "Edit",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(3.0f, 17.25f)
+        verticalLineTo(21.0f)
+        horizontalLineToRelative(3.75f)
+        lineTo(17.81f, 9.94f)
+        lineToRelative(-3.75f, -3.75f)
+        lineTo(3.0f, 17.25f)
+        close()
+        moveTo(20.71f, 7.04f)
+        curveToRelative(0.39f, -0.39f, 0.39f, -1.02f, 0.0f, -1.41f)
+        lineToRelative(-2.34f, -2.34f)
+        curveToRelative(-0.39f, -0.39f, -1.02f, -0.39f, -1.41f, 0.0f)
+        lineToRelative(-1.83f, 1.83f)
+        lineToRelative(3.75f, 3.75f)
+        lineToRelative(1.83f, -1.83f)
+        close()
+    }.build()
+}
+
+@Preview(heightDp = 2000)
 @Composable
 fun IconPreview() {
     Column {
@@ -809,7 +976,12 @@ fun IconPreview() {
             SomeLogoIcon,
             CheckIcon,
             AddIcon,
-            TruckIcon
+            TruckIcon,
+            EmailIcon,
+            PhoneIcon,
+            LocationIcon,
+            StarIcon,
+            EditIcon
         )
         icons.forEach { icon ->
             Image(
