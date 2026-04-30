@@ -963,6 +963,36 @@ val EditIcon: ImageVector by lazy {
     }.build()
 }
 
+val ArrowLeftIcon: ImageVector by lazy {
+    ImageVector.Builder(
+        name = "ArrowLeft",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 960.0f,
+        viewportHeight = 960.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(313.0f, 520.0f)
+        lineToRelative(224.0f, 224.0f)
+        lineToRelative(-57.0f, 56.0f)
+        lineToRelative(-320.0f, -320.0f)
+        lineToRelative(320.0f, -320.0f)
+        lineToRelative(57.0f, 56.0f)
+        lineToRelative(-224.0f, 224.0f)
+        horizontalLineToRelative(487.0f)
+        verticalLineToRelative(80.0f)
+        lineTo(313.0f, 520.0f)
+        close()
+    }.build()
+}
+
 @Preview(heightDp = 2000)
 @Composable
 fun IconPreview() {
@@ -981,7 +1011,8 @@ fun IconPreview() {
             PhoneIcon,
             LocationIcon,
             StarIcon,
-            EditIcon
+            EditIcon,
+            ArrowLeftIcon,
         )
         icons.forEach { icon ->
             Image(
