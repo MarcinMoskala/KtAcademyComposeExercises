@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import kt.academy.AddIcon
 import kt.academy.AvatarIcon
 import kt.academy.R
-import kt.academy.polished.AppTheme.Surface
 
 @Composable
 fun SpeakerCard(

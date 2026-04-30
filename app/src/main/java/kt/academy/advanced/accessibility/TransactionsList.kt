@@ -62,19 +62,7 @@ fun TransactionListItem(
     modifier: Modifier = Modifier
 ) {
     Row(
-        modifier = modifier.semantics(mergeDescendants = true) {}
-            .clearAndSetSemantics {
-                contentDescription = if (transaction.isDeposit) {
-                    "You have received " +
-                            "${transaction.formattedAmount} from " +
-                            "${transaction.origin} to your " +
-                            transaction.destination
-                } else {
-                    "You have spent " +
-                            "${transaction.formattedAmount} at " +
-                            transaction.destination
-                }
-            },
+        modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
         if (transaction.isDeposit) {
