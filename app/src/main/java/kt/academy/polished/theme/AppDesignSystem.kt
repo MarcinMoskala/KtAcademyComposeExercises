@@ -13,6 +13,8 @@ import androidx.compose.ui.unit.dp
 data class AppColor(
     val background: Color,
     val onBackground: Color,
+    var cardContainer: Color,
+    var onCardContainer: Color,
     val textPrimary: Color,
     val textSecondary: Color,
     val accent: Color,
@@ -55,6 +57,8 @@ val LocalAppColor = staticCompositionLocalOf {
     AppColor(
         background = Color.Unspecified,
         onBackground = Color.Unspecified,
+        cardContainer = Color.Unspecified,
+        onCardContainer = Color.Unspecified,
         textPrimary = Color.Unspecified,
         textSecondary = Color.Unspecified,
         accent = Color.Unspecified,

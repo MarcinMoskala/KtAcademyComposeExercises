@@ -21,6 +21,8 @@ import androidx.compose.ui.unit.sp
 private val lightThemeColors = AppColor(
     background = Color(0xFFFFFBFF),
     onBackground = Color.Black,
+    cardContainer = Color(red = 231, green = 224, blue = 236),
+    onCardContainer = Color(red = 73, green = 69, blue = 79),
     textPrimary = Color(0xFF1C1B1F),
     textSecondary = Color(0xFF49454F),
     accent = Color(0xFF0061A4),
@@ -33,6 +35,8 @@ private val lightThemeColors = AppColor(
 private val darkThemeColor = AppColor(
     background = Color(0xFF141218),
     onBackground = Color.White,
+    cardContainer = Color(red = 73, green = 69, blue = 79),
+    onCardContainer = Color(red = 202, green = 196, blue = 208),
     textPrimary = Color(0xFFE6E1E5),
     textSecondary = Color(0xFFCAC4D0),
     accent = Color(0xFF9CCAFF),
