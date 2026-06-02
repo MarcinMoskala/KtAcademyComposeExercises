@@ -1,14 +1,18 @@
-package kt.academy
+package kt.academy.util
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.vector.*
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathFillType
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.graphics.StrokeJoin
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.vector.path
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
@@ -993,6 +997,33 @@ val ArrowLeftIcon: ImageVector by lazy {
     }.build()
 }
 
+val ArrowDownIcon : ImageVector by lazy {
+    ImageVector.Builder(
+        name = "ArrowDownIcon",
+        defaultWidth = 24.0.dp,
+        defaultHeight = 24.0.dp,
+        viewportWidth = 24.0f,
+        viewportHeight = 24.0f
+    ).path(
+        fill = SolidColor(Color.Black),
+        stroke = null,
+        strokeLineWidth = 0.0f,
+        strokeLineCap = StrokeCap.Butt,
+        strokeLineJoin = StrokeJoin.Miter,
+        strokeLineMiter = 4.0f,
+        pathFillType = PathFillType.NonZero
+    ) {
+        moveTo(7.41f, 8.59f)
+        lineTo(12.0f, 13.17f)
+        lineToRelative(4.59f, -4.58f)
+        lineTo(18.0f, 10.0f)
+        lineToRelative(-6.0f, 6.0f)
+        lineToRelative(-6.0f, -6.0f)
+        lineToRelative(1.41f, -1.41f)
+        close()
+    }.build()
+}
+
 @Preview(heightDp = 2000)
 @Composable
 fun IconPreview() {
@@ -1013,6 +1044,7 @@ fun IconPreview() {
             StarIcon,
             EditIcon,
             ArrowLeftIcon,
+            ArrowDownIcon,
         )
         icons.forEach { icon ->
             Image(

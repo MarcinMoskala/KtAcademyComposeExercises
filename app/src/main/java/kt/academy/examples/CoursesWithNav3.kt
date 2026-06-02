@@ -47,7 +47,16 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
-import kt.academy.*
+import kt.academy.util.AddIcon
+import kt.academy.util.AppleIcon
+import kt.academy.util.AvatarIcon
+import kt.academy.util.CheckIcon
+import kt.academy.util.ComposeLogoIcon
+import kt.academy.util.FavoriteIcon
+import kt.academy.util.MilkIcon
+import kt.academy.util.SomeLogoIcon
+import kt.academy.util.TruckIcon
+import kt.academy.util.loremIpsum
 import kotlin.reflect.KClass
 
 //@Preview
@@ -176,8 +185,6 @@ sealed interface Screen : NavKey {
     @Serializable
     data class Lesson(val courseId: String, val courseName: String, val lessonId: Int) : Screen
 }
-
-fun loremIpsum(length: Int): String = "Lorem ipsum ".repeat(length / 10 + 1).take(length)
 
 private val allIcons = listOf(
     MilkIcon,

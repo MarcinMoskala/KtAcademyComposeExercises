@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil3.compose.rememberAsyncImagePainter
 import kotlinx.collections.immutable.persistentListOf
-import kt.academy.ArrowLeftIcon
+import kt.academy.util.ArrowLeftIcon
 import java.util.UUID
 import kotlin.collections.plus
 

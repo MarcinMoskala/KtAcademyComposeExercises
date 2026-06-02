@@ -29,11 +29,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kt.academy.EditIcon
-import kt.academy.EmailIcon
-import kt.academy.LocationIcon
-import kt.academy.PhoneIcon
-import kt.academy.StarIcon
+import kt.academy.util.EditIcon
+import kt.academy.util.EmailIcon
+import kt.academy.util.LocationIcon
+import kt.academy.util.PhoneIcon
+import kt.academy.util.StarIcon
 
 data class Preference(
     val icon: ImageVector,

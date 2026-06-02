@@ -1,16 +1,10 @@
 package kt.academy.polished
 
-import android.R.attr.label
-import android.R.attr.maxHeight
-import android.R.attr.maxWidth
 import androidx.compose.animation.core.AnimationVector2D
-import androidx.compose.animation.core.FastOutLinearInEasing
-import androidx.compose.animation.core.LinearOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.TwoWayConverter
 import androidx.compose.animation.core.animateValue
 import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.keyframes
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -25,7 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import kt.academy.ComposeLogoIcon
+import kt.academy.util.ComposeLogoIcon
 import kotlin.math.roundToInt
 
 @Preview

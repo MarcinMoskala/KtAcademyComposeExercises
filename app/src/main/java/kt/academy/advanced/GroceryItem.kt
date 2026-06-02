@@ -1,6 +1,5 @@
 package kt.academy.advanced
 
-import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -10,13 +9,12 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.vector.*
 import androidx.compose.animation.*
 import androidx.compose.foundation.layout.Arrangement.Absolute.SpaceBetween
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import kt.academy.AppleIcon
-import kt.academy.CheckIcon
-import kt.academy.MilkIcon
+import kt.academy.util.AppleIcon
+import kt.academy.util.CheckIcon
+import kt.academy.util.MilkIcon
 
 @Composable
 fun GroceryItem(

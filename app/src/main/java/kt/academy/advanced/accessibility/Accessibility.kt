@@ -19,7 +19,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.traversalIndex
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kt.academy.FavoriteIcon
+import kt.academy.util.FavoriteIcon
 
 @Composable
 @Preview
