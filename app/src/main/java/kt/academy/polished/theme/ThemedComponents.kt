@@ -23,6 +23,7 @@ private fun ThemedComposables() {
     Column {
         AppPrimaryButton(label = "Click Me", onClick = {})
         AppCheckBox(label = "Check Me", checked = false, onCheckedChange = {})
+        AppCheckBox(label = "Uncheck Me", checked = true, onCheckedChange = {})
     }
 }
 
@@ -60,6 +61,7 @@ fun AppCheckBox(
         Checkbox(
             colors = CheckboxDefaults.colors(
                 checkedColor = Color(0xFF0061A4),
+                checkmarkColor = Color.White
             ),
             checked = checked,
             onCheckedChange = onCheckedChange,
