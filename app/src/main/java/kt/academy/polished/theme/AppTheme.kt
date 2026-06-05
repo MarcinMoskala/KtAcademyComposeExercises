@@ -2,6 +2,7 @@ package kt.academy.polished.theme
 
 import androidx.compose.foundation.LocalIndication
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
@@ -47,12 +48,7 @@ private val darkThemeColor = AppColor(
 )
 
 private val themeTypography = AppTypography(
-    titleLarge = TextStyle(
-        fontSize = 24.sp,
-        lineHeight = 32.sp,
-        fontWeight = FontWeight.Bold
-    ),
-    titleMedium = TextStyle(
+    title = TextStyle(
         fontSize = 18.sp,
         lineHeight = 24.sp,
         fontWeight = FontWeight.SemiBold
@@ -60,11 +56,6 @@ private val themeTypography = AppTypography(
     body = TextStyle(
         fontSize = 16.sp,
         lineHeight = 24.sp
-    ),
-    bodyStrong = TextStyle(
-        fontSize = 16.sp,
-        lineHeight = 24.sp,
-        fontWeight = FontWeight.Medium
     ),
     label = TextStyle(
         fontSize = 14.sp,
@@ -74,19 +65,16 @@ private val themeTypography = AppTypography(
 )
 
 private val themeShapes = AppShape(
-    small = RoundedCornerShape(8.dp),
-    medium = RoundedCornerShape(16.dp),
-    large = RoundedCornerShape(24.dp),
+    container = RoundedCornerShape(12.dp),
     pill = RoundedCornerShape(percent = 50),
 )
 
 val themeSizes = AppSize(
-    xs = 4.dp,
-    sm = 8.dp,
-    md = 16.dp,
-    lg = 24.dp,
-    xl = 32.dp,
-    buttonHeight = 56.dp,
+    s = 4.dp,
+    m = 8.dp,
+    l = 12.dp,
+    xl = 16.dp,
+    xxl = 24.dp,
     iconSize = 20.dp,
     screenPadding = 16.dp,
 )
@@ -184,16 +172,14 @@ fun AppThemeMaterial(
         MaterialTheme(
             colorScheme = materialColorScheme,
             typography = Typography(
-                titleLarge = typography.titleLarge,
-                titleMedium = typography.titleMedium,
+                titleLarge = typography.title,
                 bodyLarge = typography.body,
-                bodyMedium = typography.bodyStrong,
                 labelLarge = typography.label
             ),
             shapes = Shapes(
-                small = shapes.small,
-                medium = shapes.medium,
-                large = shapes.large,
+                small = shapes.container.copy(CornerSize(8.dp)),
+                medium = shapes.container,
+                large = shapes.container.copy(CornerSize(16.dp)),
             ),
             content = content,
         )
