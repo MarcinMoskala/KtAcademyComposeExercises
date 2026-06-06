@@ -59,11 +59,11 @@ fun AccountAccessScreen(
             .fillMaxSize()
             .background(AppTheme.colors.background)
             .padding(AppTheme.sizes.screenPadding),
-        verticalArrangement = Arrangement.spacedBy(AppTheme.sizes.md),
+        verticalArrangement = Arrangement.spacedBy(AppTheme.sizes.m),
     ) {
         Text(
             text = "Account access",
-            style = AppTheme.typography.titleLarge,
+            style = AppTheme.typography.title,
             color = AppTheme.colors.textPrimary,
         )
 
@@ -91,7 +91,7 @@ fun AccountAccessScreen(
             onClick = onSave,
             modifier = Modifier
                 .fillMaxWidth()
-                .heightIn(min = AppTheme.sizes.buttonHeight),
+                .heightIn(min = AppTheme.sizes.xxl * 2),
         ) {
             Text("Save")
         }

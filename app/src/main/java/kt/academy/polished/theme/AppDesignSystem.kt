@@ -26,29 +26,24 @@ data class AppColor(
 
 @Immutable
 data class AppTypography(
-    val titleLarge: TextStyle,
-    val titleMedium: TextStyle,
+    val title: TextStyle,
     val body: TextStyle,
-    val bodyStrong: TextStyle,
     val label: TextStyle,
 )
 
 @Immutable
 data class AppShape(
-    val small: CornerBasedShape,
-    val medium: CornerBasedShape,
-    val large: CornerBasedShape,
+    val container: CornerBasedShape,
     val pill: CornerBasedShape,
 )
 
 @Immutable
 data class AppSize(
-    val xs: Dp,
-    val sm: Dp,
-    val md: Dp,
-    val lg: Dp,
+    val s: Dp,
+    val m: Dp,
+    val l: Dp,
     val xl: Dp,
-    val buttonHeight: Dp,
+    val xxl: Dp,
     val iconSize: Dp,
     val screenPadding: Dp,
 )
@@ -71,31 +66,26 @@ val LocalAppColor = staticCompositionLocalOf {
 
 val LocalAppTypography = staticCompositionLocalOf {
     AppTypography(
-        titleLarge = TextStyle.Default,
-        titleMedium = TextStyle.Default,
+        title = TextStyle.Default,
         body = TextStyle.Default,
-        bodyStrong = TextStyle.Default,
         label = TextStyle.Default,
     )
 }
 
 val LocalAppShape = staticCompositionLocalOf {
     AppShape(
-        small = RoundedCornerShape(0.dp),
-        medium = RoundedCornerShape(0.dp),
-        large = RoundedCornerShape(0.dp),
+        container = RoundedCornerShape(0.dp),
         pill = RoundedCornerShape(0.dp),
     )
 }
 
 val LocalAppSize = staticCompositionLocalOf {
     AppSize(
-        xs = Dp.Unspecified,
-        sm = Dp.Unspecified,
-        md = Dp.Unspecified,
-        lg = Dp.Unspecified,
+        s = Dp.Unspecified,
+        m = Dp.Unspecified,
+        l = Dp.Unspecified,
         xl = Dp.Unspecified,
-        buttonHeight = Dp.Unspecified,
+        xxl = Dp.Unspecified,
         iconSize = Dp.Unspecified,
         screenPadding = Dp.Unspecified,
     )
