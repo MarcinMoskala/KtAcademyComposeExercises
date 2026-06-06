@@ -39,7 +39,10 @@ import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil3.compose.AsyncImage
+import coil3.compose.rememberAsyncImagePainter
 import kt.academy.R
+import kt.academy.util.NetworkImage
 
 @Composable
 fun StartingScreenArt(isCompact: Boolean, modifier: Modifier) {
@@ -47,26 +50,21 @@ fun StartingScreenArt(isCompact: Boolean, modifier: Modifier) {
         maxWidth
         maxHeight
         if (isCompact) {
-            Image(
-                painter = painterResource(R.drawable.compose_background_1),
-                contentDescription = null,
-                contentScale = ContentScale.Fit,
+            NetworkImage(
+                "https://marcinmoskala.com/courses/polished_compose/resources/compose_background_1.png",
                 modifier = Modifier,
             )
         } else {
-            Image(
-                painter = painterResource(R.drawable.compose_background_1),
-                contentDescription = null,
+            NetworkImage(
+                "https://marcinmoskala.com/courses/polished_compose/resources/compose_background_1.png",
                 modifier = Modifier,
             )
-            Image(
-                painter = painterResource(R.drawable.compose_background_2),
-                contentDescription = null,
+            NetworkImage(
+                "https://marcinmoskala.com/courses/polished_compose/resources/compose_background_2.png",
                 modifier = Modifier,
             )
-            Image(
-                painter = painterResource(R.drawable.compose_background_3),
-                contentDescription = null,
+            NetworkImage(
+                "https://marcinmoskala.com/courses/polished_compose/resources/compose_background_3.png",
                 modifier = Modifier,
             )
         }
