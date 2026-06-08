@@ -45,10 +45,9 @@ import kt.academy.R
 import kt.academy.util.NetworkImage
 
 @Composable
-fun StartingScreenArt(isCompact: Boolean, modifier: Modifier) {
+fun StartingScreenArt(modifier: Modifier = Modifier) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
-        maxWidth
-        maxHeight
+        val isCompact = maxWidth < 600.dp
         if (isCompact) {
             NetworkImage(
                 "https://marcinmoskala.com/courses/polished_compose/resources/compose_background_1.png",
@@ -80,12 +79,11 @@ fun ComposeStartScreen(
     modifier: Modifier = Modifier
 ) {
     BoxWithConstraints(modifier = modifier.fillMaxSize()) {
+        StartingScreenArt()
+
         val isCompact = maxWidth < 600.dp
         val horizontalPadding = if (isCompact) 24.dp else 96.dp
         val verticalPadding = if (isCompact) 28.dp else 64.dp
-
-        StartingScreenArt(isCompact, Modifier)
-
         TitleBlock(
             title = title,
             opening = opening,
@@ -109,18 +107,7 @@ fun ComposeStartScreen(
     }
 }
 
-@Preview
-@Preview(device = Devices.PIXEL)
-@Preview(device = Devices.NEXUS_10)
-@Preview(device = Devices.FOLDABLE)
-@Preview(device = Devices.DESKTOP)
-@Preview(device = Devices.TV_720p)
-@Preview(device = Devices.AUTOMOTIVE_1024p)
-@Preview(device = "spec:width=1280dp,height=832dp")
-@Preview(device = "spec:width=1080dp,height=832dp")
-@Preview(device = "spec:width=1480dp,height=632dp")
-@Preview(device = "spec:width=580dp,height=832dp")
-// TODO: Add preview configurations
+@Preview // TODO: Add preview configurations
 @Composable
 private fun StartScreenCoroutinesGamePreview() {
     GameDesign {
