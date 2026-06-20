@@ -24,7 +24,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
@@ -173,8 +172,6 @@ private fun CourseDetailPane(
     }
 }
 
-// Hide
-
 data class CourseCategory(
     val id: String,
     val name: String,
@@ -264,7 +261,7 @@ private val longTitleCourse = Course(
 @Preview(widthDp = 390, heightDp = 844, name = "Single pane - list")
 @Composable
 private fun CourseCatalogSinglePaneListPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -281,7 +278,7 @@ private fun CourseCatalogSinglePaneListPreview() {
 @Preview(widthDp = 390, heightDp = 844, name = "Single pane - detail")
 @Composable
 private fun CourseCatalogSinglePaneDetailPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -298,7 +295,7 @@ private fun CourseCatalogSinglePaneDetailPreview() {
 @Preview(widthDp = 840, heightDp = 900, name = "Supporting pane - selected")
 @Composable
 private fun CourseCatalogSupportingPaneSelectedPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -315,7 +312,7 @@ private fun CourseCatalogSupportingPaneSelectedPreview() {
 @Preview(widthDp = 840, heightDp = 900, name = "Supporting pane - empty")
 @Composable
 private fun CourseCatalogSupportingPaneEmptyPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -332,7 +329,7 @@ private fun CourseCatalogSupportingPaneEmptyPreview() {
 @Preview(widthDp = 1280, heightDp = 900, name = "Multi pane")
 @Composable
 private fun CourseCatalogMultiPanePreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -349,7 +346,7 @@ private fun CourseCatalogMultiPanePreview() {
 @Preview(widthDp = 1280, heightDp = 900, name = "Multi pane - long title")
 @Composable
 private fun CourseCatalogLongTitlePreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = (sampleCourses + longTitleCourse).toPersistentList(),
@@ -366,7 +363,7 @@ private fun CourseCatalogLongTitlePreview() {
 @Preview(widthDp = 840, heightDp = 900, fontScale = 1.4f, name = "Large font scale")
 @Composable
 private fun CourseCatalogLargeFontPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
@@ -383,7 +380,7 @@ private fun CourseCatalogLargeFontPreview() {
 @Preview(widthDp = 740, heightDp = 360, name = "Compact height")
 @Composable
 private fun CourseCatalogCompactHeightPreview() {
-    MaterialTheme {
+    AppTheme {
         CourseCatalogScreen(
             categories = sampleCourseCategories,
             courses = sampleCourses,
